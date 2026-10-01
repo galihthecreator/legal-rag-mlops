@@ -81,3 +81,11 @@ class HybridParentRetriever:
 
     def invoke(self, query: str) -> List[Document]:
         return self.ensemble_retriever.invoke(query)
+    
+    def invoke(self, input: str, config=None, **kwargs):
+        """Mendukung pemanggilan standar LangChain invoke"""
+        return self.get_relevant_documents(input)
+
+    def retrieve(self, query: str):
+        """Alias agar pemanggilan .retrieve() tetap berjalan lancar"""
+        return self.invoke(query)
