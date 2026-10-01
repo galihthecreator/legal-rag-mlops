@@ -1,0 +1,45 @@
+# config.yaml
+# Konfigurasi Utama Sistem Legal RAG MLOps
+
+project:
+  name: "legal-rag-mlops"
+  version: "1.0.0"
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  faiss_index_dir: "artifacts/faiss_index"
+  parent_docstore_path: "artifacts/parent_docstore.pkl"
+  logs_dir: "logs"
+
+chunking:
+  parent_chunk_size: 2000
+  parent_chunk_overlap: 200
+  child_chunk_size: 400
+  child_chunk_overlap: 50
+
+embeddings:
+  model_name: "BAAI/bge-m3"
+  device: "cpu" # Gunakan "cpu" jika tidak memiliki GPU NVIDIA
+  normalize_embeddings: true
+
+retriever:
+  top_k_bm25: 10
+  top_k_faiss: 10
+  weights: [0.5, 0.5] # Pembobotan [BM25, FAISS] pada EnsembleRetriever
+
+reranker:
+  model_name: "BAAI/bge-reranker-v2-m3"
+  top_k: 3
+  fallback_threshold: 0.2 # Skor minimum Cross-Encoder sebelum memicu fallback prompt
+
+model:
+  name: "Qwen/Qwen2.5-1.5B-Instruct"
+  load_in_4bit: true
+  max_new_tokens: 512
+  temperature: 0.2
+  top_p: 0.9
+
+api:
+  host: "0.0.0.0"
+  port: 8000

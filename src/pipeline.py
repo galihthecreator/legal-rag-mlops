@@ -101,7 +101,7 @@ class LegalRAGPipeline:
             search_query = f"{query} {hypothetical_doc}"
 
         # 2. Hybrid Retrieval (BM25 + FAISS pada Child Chunks -> Parent Docs)
-        retrieved_docs = self.retriever.retrieve(search_query)
+        retrieved_docs = self.retriever.invoke(search_query)
 
         # 3. Reranking (Cross-Encoder BGE-M3)
         ranked_docs, is_fallback = self.reranker.rerank(query, retrieved_docs)

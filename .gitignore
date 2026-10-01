@@ -1,28 +1,32 @@
 # Virtual Environment
 venv/
 .venv/
+env/
 
-# Python Cache & Bytecode
+# Python Cache
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
 
-# Environment Variables & Secrets
-.env
-
-# Data & Artifacts (Akan dilacak oleh DVC, bukan Git)
-data/raw/*
-data/processed/*
-artifacts/*
-
-# Model Weights & Large Checkpoints
-*.bin
+# Model Weights & HF Cache
+models/
+.cache/
+huggingface/
 *.safetensors
-*.pt
-*.pth
+*.bin
 *.onnx
 
-# VS Code Settings & Cache
+# Vectorstore / Database Local (jika dibuat secara dinamis)
+faiss_index/
+chroma_db/
+
+# Environment Variables & IDE
+.env
 .vscode/
-*.log
-/artifacts
+.idea/
+
+# OS Junk
+Thumbs.db
+Desktop.ini
