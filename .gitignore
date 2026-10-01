@@ -25,3 +25,4 @@ artifacts/*
 # VS Code Settings & Cache
 .vscode/
 *.log
+/artifacts
